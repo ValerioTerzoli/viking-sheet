@@ -3,7 +3,7 @@ body {
     margin: 0;
     display: grid;
     grid-template-columns: 5fr 2fr;
-    grid-template-rows: 1fr 5fr;
+    grid-template-rows: 1fr 100vh;
     grid-template-areas: 
     "header header"
     "sheet  diceRoller";
@@ -28,6 +28,36 @@ body {
 
 #sheet {
     grid-area: sheet;
+    background-color: rgb(106, 106, 106);
+    padding: 20px;
+}
+
+#healthContainer {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(15, 30px);
+    justify-content: end;
+}
+
+#healthContainer li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.hover {
+    background-color: black;
+    opacity: 20%;
+}
+
+.active {
+    background-color: black;
+    opacity: 70%;
 }
 
 #diceRoller {
