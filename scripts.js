@@ -11,7 +11,8 @@ healthCounters.forEach((counter, i) => {
     counter.addEventListener("click", () => {
         healthCounters.forEach((element, j) => {
             element.classList.toggle("active", j <= i);
-            HP = i;
+            HP = i + 1;
+            console.log(HP);
         });
     })
 });
