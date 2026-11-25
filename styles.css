@@ -15,12 +15,13 @@ body {
     background-color: rgb(64, 64, 64);
 }
 
-#header button {
+#header a {
     box-sizing: border-box;
     justify-content: start;
     border: none;
     color: white;
     background-color: rgb(64, 64, 64);
+    text-decoration: none;
     padding: 15px 32px;
     border-right: 1px solid white;
 }
