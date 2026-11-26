@@ -12,27 +12,31 @@
         <a>CHARACTER SHEET</a>
         <a href="pages/keywords.html">KEYWORDS</a>
         <a href="pages/map.html">MAP</a>
+        <a id="save">SAVE</a>
+        <a id="reset">RESET</a>
     </div>
     <div id="sheet">
-        <ul id="healthContainer">
-            <!--30 li to signify health points-->
-            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
-        </ul>
-        <div id="defenceContainer">
-            <ul id="armorContainer">
-                <!--5 li to signify armor points-->
-                <li></li><li></li><li></li><li></li><li></li>
+        <div id="topSheetContainer">
+            <ul id="healthContainer">
+                <!--30 li to signify health points-->
+                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
             </ul>
-            <div id="shieldDurabilityContainer">
-                <input type="number" id="current">
-                <input type="number" id="max">
-            </div>
-            <input type="number" id="shieldValue">
-            <div id="reflexContainer">
-                <input type="number" id="current">
-                <input type="number" id="max">
+            <div id="defenceContainer">
+                <ul id="armorContainer">
+                    <!--5 li to signify armor points-->
+                    <li></li><li></li><li></li><li></li><li></li>
+                </ul>
+                <input type="number" id="shieldValue">
+                <div id="shieldDurabilityContainer">
+                    <input type="number" id="current">
+                    <input type="number" id="max">
+                </div>
+                <div id="reflexContainer">
+                    <input type="number" id="current">
+                    <input type="number" id="max">
+                </div>
             </div>
         </div>
         <div id="statContainerTop">
@@ -102,12 +106,57 @@
             <ul class="statContainer" id="litheCounters">
                 <li></li><li></li><li></li><li></li><li></li>
                 <li></li><li></li><li></li><li></li><li></li>
+            </ul>        
+        </div>
+        <div id="statContainerBottom">
+            <div class="statName">Performance</div>
+            <div class="statName">Survival</div>
+            <div class="statName">Sailing</div>
+            <div class="statName">Lore</div>
+            <div class="statName">Craftsmanship</div>
+            <div class="statName">Guile</div>
+            <div class="statName">Combat</div>
+            <div class="statName">Insight</div>
+            <ul class="statContainer" id="performanceCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
             </ul>
-            
-            
-            
-            
-            
+            <ul class="statContainer" id="survivalCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+            <ul class="statContainer" id="sailingCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+            <ul class="statContainer" id="loreCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+            <ul class="statContainer" id="craftsmanshipCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+            <ul class="statContainer" id="guileCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+            <ul class="statContainer" id="combatCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+            <ul class="statContainer" id="insightCounters">
+                <li></li><li></li><li></li><li></li><li></li>
+                <li></li><li></li><li></li><li></li><li></li>
+            </ul>
+        </div>
+        <div id="titles">
+            <h2>Keywords</h2>
+            <h2>Mechanics</h2>
+        </div>
+        <div id="text">
+            <textarea></textarea>
+            <textarea id="right"></textarea>
         </div>
     </div>
     <div id="diceRoller">dice</div>

@@ -11,6 +11,7 @@ body {
     padding: 0;
     margin: 0;
     display: grid;
+    background-color: rgb(106, 106, 106);
     grid-template-columns: 5fr 2fr;
     grid-template-rows: 1fr 100vh;
     grid-template-areas: 
@@ -41,9 +42,16 @@ ul {
 }
 
 #sheet {
+    height: fit-content;
     grid-area: sheet;
     background-color: rgb(106, 106, 106);
 
+}
+
+#topSheetContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #healthContainer {
@@ -51,7 +59,7 @@ ul {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(15, 30px);
-    justify-content: end;
+    justify-content: start;
 }
 
 #healthContainer li{
@@ -71,6 +79,7 @@ ul {
     grid-template-columns: 30px repeat(3, 45px);
     gap: 2px;
     justify-content: end;
+    align-content: start;
 }
 
 #armorContainer {
@@ -152,6 +161,10 @@ ul {
     grid-template-columns: repeat(5, 1fr);
 }
 
+#statContainerTop .statName {
+    font-size: smaller;
+}
+
 .statContainer li {
     list-style-type: none;
     margin: 0;
@@ -160,10 +173,6 @@ ul {
     width: 15px;
     border-radius: 50%;
     border: 1px solid black;
-}
-
-#statContainerTop .statName {
-    font-size: smaller;
 }
 
 #statContainerMiddle {
@@ -185,6 +194,25 @@ ul {
     font-size: larger;
 }
 
+#statContainerBottom {
+    margin: 0;
+    padding: 5px 5px 20px 5px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    place-items: center;
+    background-color: rgb(174, 174, 174);
+}
+
+#statContainerBottom .statContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+#statContainerBottom .statName {
+    font-size: smaller;
+}
+
 .hover {
     background-color: black;
     opacity: 20%;
@@ -193,6 +221,32 @@ ul {
 .active {
     background-color: black;
     opacity: 70%;
+}
+
+#titles {
+    display: flex;
+    padding: 0 20px;
+    justify-content: space-between;
+}
+
+#text {
+    display: flex;
+    padding: 0 20px 40px 20px;
+    justify-content: space-between;
+}
+
+textarea {
+    resize: none;
+    field-sizing: content;
+    width: 21rem;
+    border: 0;
+    background-color: gray;
+    font-family: 'Megrim', sans-serif;
+    font-size: medium;
+}
+
+#right {
+    text-align: right;
 }
 
 #diceRoller {
