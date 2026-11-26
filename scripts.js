@@ -1,48 +1,46 @@
-//HP bar
-let HP;
-const healthCounters = [...document.querySelectorAll("#healthContainer li")].toReversed();
-healthCounters.forEach((counter, i) => {
-    counter.addEventListener("mouseover", () => {
-        healthCounters.forEach((element, j) => element.classList.toggle("hover", j <= i));
+//Function
+function addToggleCounters(array, n){
+    array.forEach((counter, i) => {
+        counter.addEventListener("mouseenter", () => {
+            array.forEach((element, j) => element.classList.toggle("hover", j <= i));
+        });
+        counter.addEventListener("mouseleave", () => {
+            array.forEach((element) => element.classList.remove("hover"))
+        });
+        counter.addEventListener("click", () => {
+            const isLastActive =
+                counter.classList.contains("active") &&
+                (i === array.length - 1 || !array[i + 1].classList.contains("active"));
+            if(isLastActive){
+                array[i].classList.remove("active");
+                if(!(n === undefined)) n.value = i;
+            }
+            else {
+                array.forEach((element, j) => {
+                    element.classList.toggle("active", j <= i);
+                    if(!(n === undefined)) n.value = i + 1;
+                });
+            }
+        })
     });
-    counter.addEventListener("mouseout", () => {
-        healthCounters.forEach((element) => element.classList.remove("hover"))
-    });
-    counter.addEventListener("click", () => {
-        const isLastHealth =
-            counter.classList.contains("active") &&
-            (i === healthCounters.length - 1 || !healthCounters[i + 1].classList.contains("active"));
-        if(isLastHealth){
-            healthCounters[i].classList.remove("active");
-            HP = i;
-            console.log(HP);
-        }
-        else {
-            healthCounters.forEach((element, j) => {
-                element.classList.toggle("active", j <= i);
-                HP = i + 1;
-                console.log(HP);
-            });
-        }
-    })
-});
+}
 
+
+//HP bar
+let HP = {value: 0};
+const healthCounters = [...document.querySelectorAll("#healthContainer li")].toReversed();
+addToggleCounters(healthCounters, HP);
 //Armor bar
 const armorCounters = [...document.querySelectorAll("#armorContainer li")];
-armorCounters.forEach((counter, i) => {
-    counter.addEventListener("mouseover", () => {
-        armorCounters.forEach((element, j) => element.classList.toggle("hover", j <= i));
-    });
-    counter.addEventListener("mouseout", () => {
-        armorCounters.forEach((element) => element.classList.remove("hover"))
-    });
-    counter.addEventListener("click", () => {
-        const isLastArmor =
-            counter.classList.contains("active") &&
-            (i === armorCounters.length - 1 || !armorCounters[i + 1].classList.contains("active"));
-        if(isLastArmor) armorCounters[i].classList.remove("active")
-        else {
-            armorCounters.forEach((element, j) => element.classList.toggle("active", j <= i));
-        }
-    });
-});
+addToggleCounters(armorCounters);
+//Precision bar
+let precision = 0;
+const precisionCountersOne = [...document.querySelectorAll("#precisionCounters li")].splice(5);
+const precisionCountersTwo = [...document.querySelectorAll("#precisionCounters li")].splice(0, 5);
+const precisionCounters = [...precisionCountersOne, ...precisionCountersTwo];
+addToggleCounters(precisionCounters, precision);
+
+
+
+
+

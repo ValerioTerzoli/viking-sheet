@@ -18,6 +18,11 @@ body {
     "sheet  diceRoller";
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 #header {
     grid-area: header;
     display: flex;
@@ -130,6 +135,35 @@ body {
     height: 25px;
     border: 1px solid black;
     font-size: small;
+}
+
+#statContainerTop {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+    grid-template-areas:
+    "precisionCounters athleticsCounters brawlCounters convinceCounters empathyCounters hideCounters intimidateCounters awarenessCounters"
+    "precision athletics brawl convince empathy hide intimidate awareness";
+
+}
+
+.statContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+}
+
+.statContainer li{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
 .hover {
