@@ -43,12 +43,12 @@ ul {
 #sheet {
     grid-area: sheet;
     background-color: rgb(106, 106, 106);
-    padding: 20px;
+
 }
 
 #healthContainer {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: grid;
     grid-template-columns: repeat(15, 30px);
     justify-content: end;
@@ -66,7 +66,7 @@ ul {
 
 #defenceContainer {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: grid;
     grid-template-columns: 30px repeat(3, 45px);
     gap: 2px;
@@ -139,24 +139,20 @@ ul {
 
 #statContainerTop {
     margin: 0;
-    padding: 0;
+    padding: 20px 5px 5px 5px;
     display: grid;
-    grid-template-rows: repeat(8, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    gap: 10px;
-    grid-template-areas:
-    "precisionCounters athleticsCounters brawlCounters convinceCounters empathyCounters hideCounters intimidateCounters awarenessCounters"
-    "precision athletics brawl convince empathy hide intimidate awareness";
-
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    place-items: center;
+    background-color: rgb(174, 174, 174);
 }
 
-.statContainer {
+#statContainerTop .statContainer {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-
 }
 
-.statContainer li{
+.statContainer li {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -164,6 +160,29 @@ ul {
     width: 15px;
     border-radius: 50%;
     border: 1px solid black;
+}
+
+#statContainerTop .statName {
+    font-size: smaller;
+}
+
+#statContainerMiddle {
+    margin: 0;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 5px;
+    place-items: center;
+    background-color: rgb(174, 174, 174);
+}
+
+#statContainerMiddle .statContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+#statContainerMiddle .statName {
+    font-size: larger;
 }
 
 .hover {
