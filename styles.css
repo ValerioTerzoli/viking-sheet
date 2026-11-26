@@ -63,7 +63,7 @@ body {
     margin: 0;
     padding: 0;
     display: grid;
-    grid-template-columns: 30px;
+    grid-template-columns: 30px repeat(3, 45px);
     gap: 2px;
     justify-content: end;
 }
@@ -85,6 +85,51 @@ body {
     height: 10px;
     width: 30px;
     border: 1px solid black;
+}
+
+#shieldDurabilityContainer #current {
+    box-sizing: border-box;
+    background-color: transparent;
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+    font-size: medium;
+}
+
+#shieldDurabilityContainer #max {
+    box-sizing: border-box;
+    background-color: transparent;
+    width: 45px;
+    height: 25px;
+    border: 1px solid black;
+    font-size: small;
+}
+
+#shieldValue {
+    box-sizing: border-box;
+    background-color: transparent;
+    width: 45px;
+    height: 70px;
+    border: 1px solid black;
+    font-size: larger;
+}
+
+#reflexContainer #current {
+    box-sizing: border-box;
+    background-color: transparent;
+    width: 45px;
+    height: 45px;
+    border: 1px solid black;
+    font-size: medium;
+}
+
+#reflexContainer #max {
+    box-sizing: border-box;
+    background-color: transparent;
+    width: 45px;
+    height: 25px;
+    border: 1px solid black;
+    font-size: small;
 }
 
 .hover {
