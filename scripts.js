@@ -1,5 +1,4 @@
-//Function
-function addToggleCounters(array, n){
+function addToggleCounters(array, obj){
     array.forEach((counter, i) => {
         counter.addEventListener("mouseenter", () => {
             array.forEach((element, j) => element.classList.toggle("hover", j <= i));
@@ -13,12 +12,12 @@ function addToggleCounters(array, n){
                 (i === array.length - 1 || !array[i + 1].classList.contains("active"));
             if(isLastActive){
                 array[i].classList.remove("active");
-                if(!(n === undefined)) n.value = i;
+                if(!(obj === undefined)) obj.value = i;
             }
             else {
                 array.forEach((element, j) => {
                     element.classList.toggle("active", j <= i);
-                    if(!(n === undefined)) n.value = i + 1;
+                    if(!(obj === undefined)) obj.value = i + 1;
                 });
             }
         })
@@ -32,96 +31,176 @@ function changeOrder(string) {
 }
 
 
-
 //HP bar
-let HP = {value: 0};
+let HP = {
+    name: "HP",
+    value: 0
+};
 const healthCounters = [...document.querySelectorAll("#healthContainer li")];
 addToggleCounters(healthCounters, HP);
 //armor bar
 const armorCounters = [...document.querySelectorAll("#armorContainer li")];
 addToggleCounters(armorCounters);
+//statsBig
+const strengthCounters = [...document.querySelectorAll("#strengthCounters li")];
+const knowledgeCounters = [...document.querySelectorAll("#knowledgeCounters li")];
+const tenacityCounters = [...document.querySelectorAll("#tenacityCounters li")];
+const confidenceCounters = [...document.querySelectorAll("#confidenceCounters li")];
+const litheCounters = [...document.querySelectorAll("#litheCounters li")];
+let statsBig = [
+    {name: "Strength",
+    value: 0},
+    {name: "Knowledge",
+    value: 0},
+    {name: "Tenacity",
+    value: 0},
+    {name: "Confidence",
+    value: 0},
+    {name: "Lithe",
+    value: 0}
+];
+statsBig.forEach((obj) => {
+    switch (obj.name) {
+        case "Strength":
+            addToggleCounters(strengthCounters, obj);
+            break;
+        case "Knowledge":
+            addToggleCounters(knowledgeCounters, obj);
+            break;
+        case "Tenacity":
+            addToggleCounters(tenacityCounters, obj);
+            break;
+        case "Confidence":
+            addToggleCounters(confidenceCounters, obj);
+            break;
+        case "Lithe":
+            addToggleCounters(litheCounters, obj);
+            break;
+    }
+
+})
+
+//statsSmall
+let statsSmall = [
+    {name: "Precision",
+    value: 0},
+    {name: "Athletics",
+    value: 0},
+
+];
+
+
+
 //precision bar
-let precision = {value: 0};
+let precision = {
+    name: "Precision",
+    value: 0
+};
 const precisionCounters = changeOrder("precisionCounters");
 addToggleCounters(precisionCounters, precision);
 //athletics bar
-let athletics = {value: 0};
+let athletics = {
+    name: "Athletics",
+    value: 0
+};
 const athleticsCounters = changeOrder("athleticsCounters");
 addToggleCounters(athleticsCounters, athletics);
 //brawl bar
-let brawl = {value: 0};
+let brawl = {
+    name: "Brawl",
+    value: 0
+};
 const brawlCounters = changeOrder("brawlCounters");
 addToggleCounters(brawlCounters, brawl);
 //convince bar
-let convince = {value: 0};
+let convince = {
+    name: "Convince",
+    value: 0
+};
 const convinceCounters = changeOrder("convinceCounters");
 addToggleCounters(convinceCounters, convince);
 //empathy bar
-let empathy = {value: 0};
+let empathy = {
+    name: "Empathy",
+    value: 0
+};
 const empathyCounters = changeOrder("empathyCounters");
 addToggleCounters(empathyCounters, empathy);
 //hide bar
-let hide = {value: 0};
+let hide = {
+    name: "Hide",
+    value: 0
+};
 const hideCounters = changeOrder("hideCounters");
 addToggleCounters(hideCounters, hide);
 //intimidate bar
-let intimidate = {value: 0};
+let intimidate = {
+    name: "Intimidate",
+    value: 0
+};
 const intimidateCounters = changeOrder("intimidateCounters");
 addToggleCounters(intimidateCounters, intimidate);
 //awareness bar
-let awareness = {value: 0};
+let awareness = {
+    name: "Awareness",
+    value: 0
+};
 const awarenessCounters = changeOrder("awarenessCounters");
 addToggleCounters(awarenessCounters, awareness);
-//strength bar
-let strength = {value: 0};
-const strengthCounters = [...document.querySelectorAll("#strengthCounters li")];
-addToggleCounters(strengthCounters, strength);
-//knowledge bar
-let knowledge = {value: 0};
-const knowledgeCounters = [...document.querySelectorAll("#knowledgeCounters li")];
-addToggleCounters(knowledgeCounters, knowledge);
-//tenacity bar
-let tenacity = {value: 0};
-const tenacityCounters = [...document.querySelectorAll("#tenacityCounters li")];
-addToggleCounters(tenacityCounters, tenacity);
-//confidence bar
-let confidence = {value: 0};
-const confidenceCounters = [...document.querySelectorAll("#confidenceCounters li")];
-addToggleCounters(confidenceCounters, confidence);
-//lithe bar
-let lithe = {value: 0};
-const litheCounters = [...document.querySelectorAll("#litheCounters li")];
-addToggleCounters(litheCounters, lithe);
 //performance bar
-let performance = {value: 0};
+let performance = {
+    name: "Performance",
+    value: 0
+};
 const performanceCounters = [...document.querySelectorAll("#performanceCounters li")];
 addToggleCounters(performanceCounters, performance);
 //survival bar
-let survival = {value: 0};
+let survival = {
+    name: "Survival",
+    value: 0
+};
 const survivalCounters = [...document.querySelectorAll("#survivalCounters li")];
 addToggleCounters(survivalCounters, survival);
 //sailing bar
-let sailing = {value: 0};
+let sailing = {
+    name: "Sailing",
+    value: 0
+};
 const sailingCounters = [...document.querySelectorAll("#sailingCounters li")];
 addToggleCounters(sailingCounters, sailing);
 //lore bar
-let lore = {value: 0};
+let lore = {
+    name: "Lore",
+    value: 0
+};
 const loreCounters = [...document.querySelectorAll("#loreCounters li")];
 addToggleCounters(loreCounters, lore);
 //craftsmanship bar
-let craftsmanship = {value: 0};
+let craftsmanship = {
+    name: "Craftsmanship",
+    value: 0
+};
 const craftsmanshipCounters = [...document.querySelectorAll("#craftsmanshipCounters li")];
 addToggleCounters(craftsmanshipCounters, craftsmanship);
 //guile bar
-let guile = {value: 0};
+let guile = {
+    name: "Guile",
+    value: 0
+};
 const guileCounters = [...document.querySelectorAll("#guileCounters li")];
 addToggleCounters(guileCounters, guile);
 //combat bar
-let combat = {value: 0};
+let combat = {
+    name: "Combat",
+    value: 0
+};
 const combatCounters = [...document.querySelectorAll("#combatCounters li")];
 addToggleCounters(combatCounters, combat);
 //insight bar
-let insight = {value: 0};
+let insight = {
+    name: "Insight",
+    value: 0
+};
 const insightCounters = [...document.querySelectorAll("#insightCounters li")];
 addToggleCounters(insightCounters, insight);
 
@@ -272,3 +351,35 @@ function reset() {
 document.getElementById("reset").addEventListener("click", () => {
     if (confirm("Reset all values?")) reset();
 });
+
+
+
+//dice roller
+const display = document.getElementById("display");
+const displayFinal = document.getElementById("displayFinal");
+
+let exploded = 0;
+function rollDice(n){
+    let total = 0;
+    for(let i = 0;i < n; i++) {
+        const currentRoll = Math.floor(Math.random() * 10) + 1;
+        total += currentRoll;
+        if(!(i == n - 1)) display.textContent += `${currentRoll} + `;
+        else display.textContent += `${currentRoll}`;
+        if(currentRoll == 10) exploded++;
+    }
+    return total;
+}
+
+function rollWithStats(statOne, statTwo) {
+    display.textContent = `${statOne.name}: `;
+    let total = rollDice(statOne.value);
+    display.textContent += `/n${statTwo.name}: `;
+    total += rollDice(statTwo.value);
+    if(!(exploded == 0)) {
+        display.textContent += `/NExploded: `;
+        total += rollDice(exploded);
+        exploded = 0;
+    }
+    displayFinal.textContent = `Increments: ${Math.floor(total / 10)}`;
+}
