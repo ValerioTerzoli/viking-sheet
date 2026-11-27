@@ -347,6 +347,18 @@ function rollDice(n){
     return total;
 }
 
+function rollExploded() {
+    let total = 0;
+    let currentExploded = exploded;
+    for(let i = 0;!(exploded == 0);i++) {
+        if(!(i == 0)) display.textContent += " + ";
+        total += rollDice(currentExploded);
+        exploded = exploded - currentExploded;
+        currentExploded = exploded;
+    }
+    return total;
+}
+
 function rollWithStats(statOne, statTwo) {
     display.textContent = `${statOne.name}: `;
     let total = rollDice(statOne.value);
@@ -354,8 +366,7 @@ function rollWithStats(statOne, statTwo) {
     total += rollDice(statTwo.value);
     if(!(exploded == 0)) {
         display.textContent += `\nExploded: `;
-        total += rollDice(exploded);
-        exploded = 0;
+        total += rollExploded();
     }
     displayFinal.textContent = `Increments: ${Math.floor(total / 10)}`;
 }
@@ -365,13 +376,9 @@ function getStat(array, string) {
 }
 
 let currentBigStat = statsBig[0];
-document.getElementById("statOne").addEventListener("change", (e) => {currentBigStat = statsBig.find((element) => element.name === e.target.value);
-    console.table(currentBigStat);
-});
+document.getElementById("statOne").addEventListener("change", (e) => currentBigStat = statsBig.find((element) => element.name === e.target.value));
 
 let currentSmallStat = statsSmall[0];
-document.getElementById("statTwo").addEventListener("change", (e) => {currentSmallStat = statsSmall.find((element) => element.name === e.target.value);
-    console.table(currentSmallStat);
-});
+document.getElementById("statTwo").addEventListener("change", (e) => currentSmallStat = statsSmall.find((element) => element.name === e.target.value));
 
 document.getElementById("rollBtn").addEventListener("click", () => rollWithStats(currentBigStat, currentSmallStat)); 
