@@ -253,6 +253,6 @@ textarea {
     grid-area: diceRoller;
 }
 
-#display {
+#display, #displayFinal {
     white-space: pre-line;
 }

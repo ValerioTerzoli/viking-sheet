@@ -1,4 +1,5 @@
-function addToggleCounters(array, obj){
+function addToggleCounters(obj){
+    const array = obj.counters;
     array.forEach((counter, i) => {
         counter.addEventListener("mouseenter", () => {
             array.forEach((element, j) => element.classList.toggle("hover", j <= i));
@@ -12,12 +13,12 @@ function addToggleCounters(array, obj){
                 (i === array.length - 1 || !array[i + 1].classList.contains("active"));
             if(isLastActive){
                 array[i].classList.remove("active");
-                if(!(obj === undefined)) obj.value = i;
+                if(!(obj.value === undefined)) obj.value = i;
             }
             else {
                 array.forEach((element, j) => {
                     element.classList.toggle("active", j <= i);
-                    if(!(obj === undefined)) obj.value = i + 1;
+                    if(!(obj.value === undefined)) obj.value = i + 1;
                 });
             }
         })
@@ -30,160 +31,99 @@ function changeOrder(string) {
     return [...arrOne, ...arrTwo];
 }
 
-
 //HP bar
+
 let HP = {
     name: "HP",
-    value: 0
+    value: 0,
+    counters: [...document.querySelectorAll("#healthContainer li")]
 };
-const healthCounters = [...document.querySelectorAll("#healthContainer li")];
-addToggleCounters(healthCounters, HP);
+addToggleCounters(HP);
+
 //armor bar
-const armorCounters = [...document.querySelectorAll("#armorContainer li")];
-addToggleCounters(armorCounters);
+
+let armor = {
+    name: "Armor",
+    counters: armorCounters = [...document.querySelectorAll("#armorContainer li")]
+};
+addToggleCounters(armor);
+
 //statsBig
-const strengthCounters = [...document.querySelectorAll("#strengthCounters li")];
-const knowledgeCounters = [...document.querySelectorAll("#knowledgeCounters li")];
-const tenacityCounters = [...document.querySelectorAll("#tenacityCounters li")];
-const confidenceCounters = [...document.querySelectorAll("#confidenceCounters li")];
-const litheCounters = [...document.querySelectorAll("#litheCounters li")];
+
 let statsBig = [
     {name: "Strength",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#strengthCounters li")]},
     {name: "Knowledge",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#knowledgeCounters li")]},
     {name: "Tenacity",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#tenacityCounters li")]},
     {name: "Confidence",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#confidenceCounters li")]},
     {name: "Lithe",
-    value: 0}
+    value: 0,
+    counters: [...document.querySelectorAll("#litheCounters li")]}
 ];
-statsBig.forEach((obj) => {
-    switch (obj.name) {
-        case "Strength":
-            addToggleCounters(strengthCounters, obj);
-            break;
-        case "Knowledge":
-            addToggleCounters(knowledgeCounters, obj);
-            break;
-        case "Tenacity":
-            addToggleCounters(tenacityCounters, obj);
-            break;
-        case "Confidence":
-            addToggleCounters(confidenceCounters, obj);
-            break;
-        case "Lithe":
-            addToggleCounters(litheCounters, obj);
-            break;
-    }
-})
+
+statsBig.forEach((obj) => addToggleCounters(obj));
 
 //statsSmall
-const precisionCounters = changeOrder("precisionCounters");
-const athleticsCounters = changeOrder("athleticsCounters");
-const brawlCounters = changeOrder("brawlCounters");
-const convinceCounters = changeOrder("convinceCounters");
-const empathyCounters = changeOrder("empathyCounters");
-const hideCounters = changeOrder("hideCounters");
-const intimidateCounters = changeOrder("intimidateCounters");
-const awarenessCounters = changeOrder("awarenessCounters");
-const performanceCounters = [...document.querySelectorAll("#performanceCounters li")];
-const survivalCounters = [...document.querySelectorAll("#survivalCounters li")];
-const sailingCounters = [...document.querySelectorAll("#sailingCounters li")];
-const loreCounters = [...document.querySelectorAll("#loreCounters li")];
-const craftsmanshipCounters = [...document.querySelectorAll("#craftsmanshipCounters li")];
-const guileCounters = [...document.querySelectorAll("#guileCounters li")];
-const combatCounters = [...document.querySelectorAll("#combatCounters li")];
-const insightCounters = [...document.querySelectorAll("#insightCounters li")];
+
 let statsSmall = [
     {name: "Precision",
-    value: 0},
+    value: 0,
+    counters: changeOrder("precisionCounters")},
     {name: "Athletics",
-    value: 0},
+    value: 0,
+    counters: changeOrder("athleticsCounters")},
     {name: "Brawl",
-    value: 0},
+    value: 0,
+    counters: changeOrder("brawlCounters")},
     {name: "Convince",
-    value: 0},
+    value: 0,
+    counters: changeOrder("convinceCounters")},
     {name: "Empathy",
-    value: 0},
+    value: 0,
+    counters: changeOrder("empathyCounters")},
     {name: "Hide",
-    value: 0},
+    value: 0,
+    counters: changeOrder("hideCounters")},
     {name: "Intimidate",
-    value: 0},
+    value: 0,
+    counters: changeOrder("intimidateCounters")},
     {name: "Awareness",
-    value: 0},
+    value: 0,
+    counters: changeOrder("awarenessCounters")},
     {name: "Performance",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#performanceCounters li")]},
     {name: "Survival",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#survivalCounters li")]},
     {name: "Sailing",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#sailingCounters li")]},
     {name: "Lore",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#loreCounters li")]},
     {name: "Craftsmanship",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#craftsmanshipCounters li")]},
     {name: "Guile",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#guileCounters li")]},
     {name: "Combat",
-    value: 0},
+    value: 0,
+    counters: [...document.querySelectorAll("#combatCounters li")]},
     {name: "Insight",
-    value: 0}
+    value: 0,
+    counters: [...document.querySelectorAll("#insightCounters li")]}
 ];
-statsSmall.forEach((obj) => {
-    switch (obj.name) {
-        case "Precision":
-            addToggleCounters(precisionCounters, obj);
-            break;
-        case "Athletics":
-            addToggleCounters(athleticsCounters, obj);
-            break;
-        case "Brawl":
-            addToggleCounters(brawlCounters, obj);
-            break;
-        case "Convince":
-            addToggleCounters(convinceCounters, obj);
-            break;
-        case "Empathy":
-            addToggleCounters(empathyCounters, obj);
-            break;
-        case "Hide":
-            addToggleCounters(hideCounters, obj);
-            break;
-        case "Intimidate":
-            addToggleCounters(intimidateCounters, obj);
-            break;
-        case "Awareness":
-            addToggleCounters(awarenessCounters, obj);
-            break;
-        case "Performance":
-            addToggleCounters(performanceCounters, obj);
-            break;
-        case "Survival":
-            addToggleCounters(survivalCounters, obj);
-            break;
-        case "Sailing":
-            addToggleCounters(sailingCounters, obj);
-            break;
-        case "Lore":
-            addToggleCounters(loreCounters, obj);
-            break;
-        case "Craftsmanship":
-            addToggleCounters(craftsmanshipCounters, obj);
-            break;
-        case "Guile":
-            addToggleCounters(guileCounters, obj);
-            break;
-        case "Combat":
-            addToggleCounters(combatCounters, obj);
-            break;
-        case "Insight":
-            addToggleCounters(insightCounters, obj);
-            break;
-    }
-})
 
-
+statsSmall.forEach((obj) => addToggleCounters(obj));
 
 // --- SAVE ---
 document.getElementById("save").addEventListener("click", () => {
@@ -340,6 +280,8 @@ document.getElementById("reset").addEventListener("click", () => {
 //dice roller
 const display = document.getElementById("display");
 const displayFinal = document.getElementById("displayFinal");
+const newApproachCheckbox = document.getElementById("newApproach");
+/*newApproachCheckbox.addEventListener("change", )*/
 
 let exploded = 0;
 function rollDice(n){
@@ -375,11 +317,23 @@ function rollWithStats(statOne, statTwo) {
     let total = rollDice(statOne.value);
     display.innerHTML += `\n${statTwo.name}: `;
     total += rollDice(statTwo.value);
+    if(HP.value <= 24) {
+        let adrenaline = 1;
+        if(HP.value <=12) adrenaline++;
+        if(HP.value <=6) adrenaline++;
+        display.innerHTML += `\nAdrenaline: `;
+        total += rollDice(adrenaline);
+    }
+    if(newApproachCheckbox.checked) {
+        display.innerHTML += `\nNew Approach: `;
+        total += rollDice(1);
+    }
     if(!(exploded == 0)) {
         display.innerHTML += `\nExploded: `;
         total += rollExploded();
     }
-    displayFinal.innerHTML = `Increments: ${Math.floor(total / 10)}`;
+    displayFinal.innerHTML = `Total: ${total}`;
+    displayFinal.innerHTML += `\nIncrements: ${Math.floor(total / 10)}`;
 }
 
 function getStat(array, string) {
