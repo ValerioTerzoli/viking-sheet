@@ -337,12 +337,15 @@ const displayFinal = document.getElementById("displayFinal");
 let exploded = 0;
 function rollDice(n){
     let total = 0;
-    for(let i = 0;i < n; i++) {
-        const currentRoll = Math.floor(Math.random() * 10) + 1;
-        total += currentRoll;
-        if(!(i == n - 1)) display.textContent += `${currentRoll} + `;
-        else display.textContent += `${currentRoll}`;
-        if(currentRoll == 10) exploded++;
+    if(n == 0) display.textContent += "0";
+    else {
+        for(let i = 0;i < n; i++) {
+            const currentRoll = Math.floor(Math.random() * 10) + 1;
+            total += currentRoll;
+            if(!(i == n - 1)) display.textContent += `${currentRoll} + `;
+            else display.textContent += `${currentRoll}`;
+            if(currentRoll == 10) exploded++;
+        }
     }
     return total;
 }
