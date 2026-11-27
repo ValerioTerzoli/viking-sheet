@@ -337,13 +337,14 @@ const displayFinal = document.getElementById("displayFinal");
 let exploded = 0;
 function rollDice(n){
     let total = 0;
-    if(n == 0) display.textContent += "0";
+    if(n == 0) display.innerHTML += "0";
     else {
         for(let i = 0;i < n; i++) {
             const currentRoll = Math.floor(Math.random() * 10) + 1;
+            const currentRollPrint = currentRoll === 10 ? '<span style="color:rgb(48, 222, 48)">10</span>' : `${currentRoll}`;
             total += currentRoll;
-            if(!(i == n - 1)) display.textContent += `${currentRoll} + `;
-            else display.textContent += `${currentRoll}`;
+            if(!(i == n - 1)) display.innerHTML += `${currentRollPrint} + `;
+            else display.innerHTML += `${currentRollPrint}`;
             if(currentRoll == 10) exploded++;
         }
     }
@@ -353,8 +354,8 @@ function rollDice(n){
 function rollExploded() {
     let total = 0;
     let currentExploded = exploded;
-    for(let i = 0;!(exploded == 0);i++) {
-        if(!(i == 0)) display.textContent += " + ";
+    for(let isFirst = true;!(exploded == 0);isFirst = false) {
+        if(!isFirst) display.innerHTML += " + ";
         total += rollDice(currentExploded);
         exploded = exploded - currentExploded;
         currentExploded = exploded;
@@ -363,15 +364,15 @@ function rollExploded() {
 }
 
 function rollWithStats(statOne, statTwo) {
-    display.textContent = `${statOne.name}: `;
+    display.innerHTML = `${statOne.name}: `;
     let total = rollDice(statOne.value);
-    display.textContent += `\n${statTwo.name}: `;
+    display.innerHTML += `\n${statTwo.name}: `;
     total += rollDice(statTwo.value);
     if(!(exploded == 0)) {
-        display.textContent += `\nExploded: `;
+        display.innerHTML += `\nExploded: `;
         total += rollExploded();
     }
-    displayFinal.textContent = `Increments: ${Math.floor(total / 10)}`;
+    displayFinal.innerHTML = `Increments: ${Math.floor(total / 10)}`;
 }
 
 function getStat(array, string) {
