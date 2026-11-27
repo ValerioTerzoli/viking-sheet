@@ -125,109 +125,53 @@ let statsSmall = [
 
 statsSmall.forEach((obj) => addToggleCounters(obj));
 
+// Unified list of all counter groups from the object declarations
+const allGroups = [
+    { key: "health", obj: HP },
+    { key: "armor", obj: armor },
+    ...statsBig.map((obj, i) => ({ key: obj.name.toLowerCase(), obj })),
+    ...statsSmall.map((obj, i) => ({ key: obj.name.toLowerCase(), obj })),
+];
+
 // --- SAVE ---
 document.getElementById("save").addEventListener("click", () => {
     if (confirm("Save?")) {
-    const data = {};
+        const data = {};
 
-    // Collect active counts for every counter group
-    const groups = [
-        ["health", healthCounters],
-        ["armor", armorCounters],
-        ["precision", precisionCounters],
-        ["athletics", athleticsCounters],
-        ["brawl", brawlCounters],
-        ["convince", convinceCounters],
-        ["empathy", empathyCounters],
-        ["hide", hideCounters],
-        ["intimidate", intimidateCounters],
-        ["awareness", awarenessCounters],
-        ["strength", strengthCounters],
-        ["knowledge", knowledgeCounters],
-        ["tenacity", tenacityCounters],
-        ["confidence", confidenceCounters],
-        ["lithe", litheCounters],
-        ["performance", performanceCounters],
-        ["survival", survivalCounters],
-        ["sailing", sailingCounters],
-        ["lore", loreCounters],
-        ["craftsmanship", craftsmanshipCounters],
-        ["guile", guileCounters],
-        ["combat", combatCounters],
-        ["insight", insightCounters],
-    ];
+        allGroups.forEach(({ key, obj }) => {
+            data[key] = obj.counters.filter(c => c.classList.contains("active")).length;
+        });
 
-    groups.forEach(([key, counters]) => {
-        data[key] = counters.filter(c => c.classList.contains("active")).length;
-    });
+        const textareas = document.querySelectorAll("#text textarea");
+        data["text_0"] = textareas[0].value;
+        data["text_1"] = textareas[1].value;
 
-    // Textareas
-    const textareas = document.querySelectorAll("#text textarea");
-    data["text_0"] = textareas[0].value;
-    data["text_1"] = textareas[1].value;
+        data["shieldValue"] = document.getElementById("shieldValue").value;
+        data["shieldCurrent"] = document.querySelector("#shieldDurabilityContainer #current").value;
+        data["shieldMax"] = document.querySelector("#shieldDurabilityContainer #max").value;
+        data["reflexCurrent"] = document.querySelector("#reflexContainer #current").value;
+        data["reflexMax"] = document.querySelector("#reflexContainer #max").value;
 
-    // Shield / reflex inputs
-    data["shieldValue"] = document.getElementById("shieldValue").value;
-    data["shieldCurrent"] = document.querySelector("#shieldDurabilityContainer #current").value;
-    data["shieldMax"] = document.querySelector("#shieldDurabilityContainer #max").value;
-    data["reflexCurrent"] = document.querySelector("#reflexContainer #current").value;
-    data["reflexMax"] = document.querySelector("#reflexContainer #max").value;
+        localStorage.setItem("pongersSheet", JSON.stringify(data));
+    }
+});
 
-    localStorage.setItem("pongersSheet", JSON.stringify(data));
-}});
-
-// --- RESTORE (run after all counters are initialized) ---
+// --- RESTORE ---
 function restore() {
     const raw = localStorage.getItem("pongersSheet");
     if (!raw) return;
     const data = JSON.parse(raw);
 
-    const groups = [
-        ["health", healthCounters],
-        ["armor", armorCounters],
-        ["precision", precisionCounters],
-        ["athletics", athleticsCounters],
-        ["brawl", brawlCounters],
-        ["convince", convinceCounters],
-        ["empathy", empathyCounters],
-        ["hide", hideCounters],
-        ["intimidate", intimidateCounters],
-        ["awareness", awarenessCounters],
-        ["strength", strengthCounters],
-        ["knowledge", knowledgeCounters],
-        ["tenacity", tenacityCounters],
-        ["confidence", confidenceCounters],
-        ["lithe", litheCounters],
-        ["performance", performanceCounters],
-        ["survival", survivalCounters],
-        ["sailing", sailingCounters],
-        ["lore", loreCounters],
-        ["craftsmanship", craftsmanshipCounters],
-        ["guile", guileCounters],
-        ["combat", combatCounters],
-        ["insight", insightCounters],
-    ];
-
-    groups.forEach(([key, counters]) => {
+    allGroups.forEach(({ key, obj }) => {
         const count = data[key] || 0;
-        counters.forEach((c, i) => c.classList.toggle("active", i < count));
-        // Also update the value object if you have one
+        obj.counters.forEach((c, i) => c.classList.toggle("active", i < count));
+        obj.value = count;
     });
 
-    HP.value = healthCounters.filter(c => c.classList.contains("active")).length;
-    statsBig.forEach(obj => {
-        obj.value = document.querySelectorAll(`#${obj.name.toLowerCase()}Counters li.active`).length;
-    });
-    statsSmall.forEach(obj => {
-        obj.value = document.querySelectorAll(`#${obj.name.toLowerCase()}Counters li.active`).length;
-    });
-
-    // Textareas
     const textareas = document.querySelectorAll("#text textarea");
     if (data["text_0"]) textareas[0].value = data["text_0"];
     if (data["text_1"]) textareas[1].value = data["text_1"];
 
-    // Inputs
     if (data["shieldValue"]) document.getElementById("shieldValue").value = data["shieldValue"];
     if (data["shieldCurrent"]) document.querySelector("#shieldDurabilityContainer #current").value = data["shieldCurrent"];
     if (data["shieldMax"]) document.querySelector("#shieldDurabilityContainer #max").value = data["shieldMax"];
@@ -235,45 +179,25 @@ function restore() {
     if (data["reflexMax"]) document.querySelector("#reflexContainer #max").value = data["reflexMax"];
 }
 
-restore();   
+restore();
 
 // --- RESET ---
 function reset() {
-    const groups = [
-        healthCounters, armorCounters, precisionCounters,
-        athleticsCounters, brawlCounters, convinceCounters,
-        empathyCounters, hideCounters, intimidateCounters,
-        awarenessCounters, strengthCounters, knowledgeCounters,
-        tenacityCounters, confidenceCounters, litheCounters,
-        performanceCounters, survivalCounters, sailingCounters,
-        loreCounters, craftsmanshipCounters, guileCounters,
-        combatCounters, insightCounters,
-    ];
-
-    groups.forEach(counters => {
-        counters.forEach(c => c.classList.remove("active", "hover"));
+    allGroups.forEach(({ obj }) => {
+        obj.counters.forEach(c => c.classList.remove("active", "hover"));
+        obj.value = 0;
     });
 
-    // Reset value objects
-    HP.value = 0;
-    statsBig.forEach(obj => obj.value = 0);
-    statsSmall.forEach(obj => obj.value = 0);
-
-    // Reset inputs
-    const inputs = document.querySelectorAll("#sheet input[type='number']");
-    inputs.forEach(input => input.value = "");
-
-    // Reset textareas
+    document.querySelectorAll("#sheet input[type='number']").forEach(input => input.value = "");
     document.querySelectorAll("#text textarea").forEach(ta => ta.value = "");
 
-    // Clear saved data
     localStorage.removeItem("pongersSheet");
     window.location.reload(true);
 }
 
 document.getElementById("reset").addEventListener("click", () => {
     if (confirm("Reset all values?")) reset();
-});
+});   
 
 
 
@@ -281,7 +205,6 @@ document.getElementById("reset").addEventListener("click", () => {
 const display = document.getElementById("display");
 const displayFinal = document.getElementById("displayFinal");
 const newApproachCheckbox = document.getElementById("newApproach");
-/*newApproachCheckbox.addEventListener("change", )*/
 
 let exploded = 0;
 function rollDice(n){
