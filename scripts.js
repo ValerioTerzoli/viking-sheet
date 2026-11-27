@@ -77,135 +77,111 @@ statsBig.forEach((obj) => {
             addToggleCounters(litheCounters, obj);
             break;
     }
-
 })
 
 //statsSmall
+const precisionCounters = changeOrder("precisionCounters");
+const athleticsCounters = changeOrder("athleticsCounters");
+const brawlCounters = changeOrder("brawlCounters");
+const convinceCounters = changeOrder("convinceCounters");
+const empathyCounters = changeOrder("empathyCounters");
+const hideCounters = changeOrder("hideCounters");
+const intimidateCounters = changeOrder("intimidateCounters");
+const awarenessCounters = changeOrder("awarenessCounters");
+const performanceCounters = [...document.querySelectorAll("#performanceCounters li")];
+const survivalCounters = [...document.querySelectorAll("#survivalCounters li")];
+const sailingCounters = [...document.querySelectorAll("#sailingCounters li")];
+const loreCounters = [...document.querySelectorAll("#loreCounters li")];
+const craftsmanshipCounters = [...document.querySelectorAll("#craftsmanshipCounters li")];
+const guileCounters = [...document.querySelectorAll("#guileCounters li")];
+const combatCounters = [...document.querySelectorAll("#combatCounters li")];
+const insightCounters = [...document.querySelectorAll("#insightCounters li")];
 let statsSmall = [
     {name: "Precision",
     value: 0},
     {name: "Athletics",
     value: 0},
-
+    {name: "Brawl",
+    value: 0},
+    {name: "Convince",
+    value: 0},
+    {name: "Empathy",
+    value: 0},
+    {name: "Hide",
+    value: 0},
+    {name: "Intimidate",
+    value: 0},
+    {name: "Awareness",
+    value: 0},
+    {name: "Performance",
+    value: 0},
+    {name: "Survival",
+    value: 0},
+    {name: "Sailing",
+    value: 0},
+    {name: "Lore",
+    value: 0},
+    {name: "Craftsmanship",
+    value: 0},
+    {name: "Guile",
+    value: 0},
+    {name: "Combat",
+    value: 0},
+    {name: "Insight",
+    value: 0}
 ];
-
-
-
-//precision bar
-let precision = {
-    name: "Precision",
-    value: 0
-};
-const precisionCounters = changeOrder("precisionCounters");
-addToggleCounters(precisionCounters, precision);
-//athletics bar
-let athletics = {
-    name: "Athletics",
-    value: 0
-};
-const athleticsCounters = changeOrder("athleticsCounters");
-addToggleCounters(athleticsCounters, athletics);
-//brawl bar
-let brawl = {
-    name: "Brawl",
-    value: 0
-};
-const brawlCounters = changeOrder("brawlCounters");
-addToggleCounters(brawlCounters, brawl);
-//convince bar
-let convince = {
-    name: "Convince",
-    value: 0
-};
-const convinceCounters = changeOrder("convinceCounters");
-addToggleCounters(convinceCounters, convince);
-//empathy bar
-let empathy = {
-    name: "Empathy",
-    value: 0
-};
-const empathyCounters = changeOrder("empathyCounters");
-addToggleCounters(empathyCounters, empathy);
-//hide bar
-let hide = {
-    name: "Hide",
-    value: 0
-};
-const hideCounters = changeOrder("hideCounters");
-addToggleCounters(hideCounters, hide);
-//intimidate bar
-let intimidate = {
-    name: "Intimidate",
-    value: 0
-};
-const intimidateCounters = changeOrder("intimidateCounters");
-addToggleCounters(intimidateCounters, intimidate);
-//awareness bar
-let awareness = {
-    name: "Awareness",
-    value: 0
-};
-const awarenessCounters = changeOrder("awarenessCounters");
-addToggleCounters(awarenessCounters, awareness);
-//performance bar
-let performance = {
-    name: "Performance",
-    value: 0
-};
-const performanceCounters = [...document.querySelectorAll("#performanceCounters li")];
-addToggleCounters(performanceCounters, performance);
-//survival bar
-let survival = {
-    name: "Survival",
-    value: 0
-};
-const survivalCounters = [...document.querySelectorAll("#survivalCounters li")];
-addToggleCounters(survivalCounters, survival);
-//sailing bar
-let sailing = {
-    name: "Sailing",
-    value: 0
-};
-const sailingCounters = [...document.querySelectorAll("#sailingCounters li")];
-addToggleCounters(sailingCounters, sailing);
-//lore bar
-let lore = {
-    name: "Lore",
-    value: 0
-};
-const loreCounters = [...document.querySelectorAll("#loreCounters li")];
-addToggleCounters(loreCounters, lore);
-//craftsmanship bar
-let craftsmanship = {
-    name: "Craftsmanship",
-    value: 0
-};
-const craftsmanshipCounters = [...document.querySelectorAll("#craftsmanshipCounters li")];
-addToggleCounters(craftsmanshipCounters, craftsmanship);
-//guile bar
-let guile = {
-    name: "Guile",
-    value: 0
-};
-const guileCounters = [...document.querySelectorAll("#guileCounters li")];
-addToggleCounters(guileCounters, guile);
-//combat bar
-let combat = {
-    name: "Combat",
-    value: 0
-};
-const combatCounters = [...document.querySelectorAll("#combatCounters li")];
-addToggleCounters(combatCounters, combat);
-//insight bar
-let insight = {
-    name: "Insight",
-    value: 0
-};
-const insightCounters = [...document.querySelectorAll("#insightCounters li")];
-addToggleCounters(insightCounters, insight);
-
-
-
+statsSmall.forEach((obj) => {
+    switch (obj.name) {
+        case "Precision":
+            addToggleCounters(precisionCounters, obj);
+            break;
+        case "Athletics":
+            addToggleCounters(athleticsCounters, obj);
+            break;
+        case "Brawl":
+            addToggleCounters(brawlCounters, obj);
+            break;
+        case "Convince":
+            addToggleCounters(convinceCounters, obj);
+            break;
+        case "Empathy":
+            addToggleCounters(empathyCounters, obj);
+            break;
+        case "Hide":
+            addToggleCounters(hideCounters, obj);
+            break;
+        case "Intimidate":
+            addToggleCounters(intimidateCounters, obj);
+            break;
+        case "Awareness":
+            addToggleCounters(awarenessCounters, obj);
+            break;
+        case "Performance":
+            addToggleCounters(performanceCounters, obj);
+            break;
+        case "Survival":
+            addToggleCounters(survivalCounters, obj);
+            break;
+        case "Sailing":
+            addToggleCounters(sailingCounters, obj);
+            break;
+        case "Lore":
+            addToggleCounters(loreCounters, obj);
+            break;
+        case "Craftsmanship":
+            addToggleCounters(craftsmanshipCounters, obj);
+            break;
+        case "Guile":
+            addToggleCounters(guileCounters, obj);
+            break;
+        case "Combat":
+            addToggleCounters(combatCounters, obj);
+            break;
+        case "Insight":
+            addToggleCounters(insightCounters, obj);
+            break;
+    }
+})
 
 
 
@@ -374,12 +350,28 @@ function rollDice(n){
 function rollWithStats(statOne, statTwo) {
     display.textContent = `${statOne.name}: `;
     let total = rollDice(statOne.value);
-    display.textContent += `/n${statTwo.name}: `;
+    display.textContent += `\n${statTwo.name}: `;
     total += rollDice(statTwo.value);
     if(!(exploded == 0)) {
-        display.textContent += `/NExploded: `;
+        display.textContent += `\nExploded: `;
         total += rollDice(exploded);
         exploded = 0;
     }
     displayFinal.textContent = `Increments: ${Math.floor(total / 10)}`;
 }
+
+function getStat(array, string) {
+    array.find((element) => element.name === string);
+}
+
+let currentBigStat = statsBig[0];
+document.getElementById("statOne").addEventListener("change", (e) => {currentBigStat = statsBig.find((element) => element.name === e.target.value);
+    console.table(currentBigStat);
+});
+
+let currentSmallStat = statsSmall[0];
+document.getElementById("statTwo").addEventListener("change", (e) => {currentSmallStat = statsSmall.find((element) => element.name === e.target.value);
+    console.table(currentSmallStat);
+});
+
+document.getElementById("rollBtn").addEventListener("click", () => rollWithStats(currentBigStat, currentSmallStat)); 
