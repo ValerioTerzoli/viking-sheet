@@ -236,10 +236,16 @@ function rollExploded() {
 }
 
 function rollWithStats(statOne, statTwo) {
-    display.innerHTML = `${statOne.name}: `;
-    let total = rollDice(statOne.value);
-    display.innerHTML += `\n${statTwo.name}: `;
-    total += rollDice(statTwo.value);
+    display.innerHTML = "";
+    let total = 0;
+    if(!(statOne.name == undefined)){
+        display.innerHTML += `${statOne.name}: `;
+        total += rollDice(statOne.value);
+    }
+    if(!(statTwo.name == undefined)){
+        display.innerHTML += `\n${statTwo.name}: `;
+        total += rollDice(statTwo.value);
+    }
     if(HP.value <= 24) {
         let adrenaline = 1;
         if(HP.value <=12) adrenaline++;
@@ -263,10 +269,18 @@ function getStat(array, string) {
     array.find((element) => element.name === string);
 }
 
-let currentBigStat = statsBig[0];
-document.getElementById("statOne").addEventListener("change", (e) => currentBigStat = statsBig.find((element) => element.name === e.target.value));
+let none = {};
 
-let currentSmallStat = statsSmall[0];
-document.getElementById("statTwo").addEventListener("change", (e) => currentSmallStat = statsSmall.find((element) => element.name === e.target.value));
+let currentBigStat = none;
+document.getElementById("statOne").addEventListener("change", (e) => {
+    if(e.target.value == "None") currentBigStat = none;
+    else currentBigStat = statsBig.find((element) => element.name === e.target.value);
+});
+
+let currentSmallStat = none;
+document.getElementById("statTwo").addEventListener("change", (e) => {
+    if(e.target.value == "None") currentSmallStat = none;
+    else currentSmallStat = statsSmall.find((element) => element.name === e.target.value);
+});
 
 document.getElementById("rollBtn").addEventListener("click", () => rollWithStats(currentBigStat, currentSmallStat)); 
