@@ -274,6 +274,14 @@ function restore() {
         // Also update the value object if you have one
     });
 
+    HP.value = healthCounters.filter(c => c.classList.contains("active")).length;
+    statsBig.forEach(obj => {
+        obj.value = document.querySelectorAll(`#${obj.name.toLowerCase()}Counters li.active`).length;
+    });
+    statsSmall.forEach(obj => {
+        obj.value = document.querySelectorAll(`#${obj.name.toLowerCase()}Counters li.active`).length;
+    });
+
     // Textareas
     const textareas = document.querySelectorAll("#text textarea");
     if (data["text_0"]) textareas[0].value = data["text_0"];
@@ -307,11 +315,9 @@ function reset() {
     });
 
     // Reset value objects
-    [HP, precision, athletics, brawl, convince, empathy,
-     hide, intimidate, awareness, strength, knowledge,
-     tenacity, confidence, lithe, performance, survival,
-     sailing, lore, craftsmanship, guile, combat, insight
-    ].forEach(obj => obj.value = 0);
+    HP.value = 0;
+    statsBig.forEach(obj => obj.value = 0);
+    statsSmall.forEach(obj => obj.value = 0);
 
     // Reset inputs
     const inputs = document.querySelectorAll("#sheet input[type='number']");
@@ -322,6 +328,7 @@ function reset() {
 
     // Clear saved data
     localStorage.removeItem("pongersSheet");
+    window.location.reload(true);
 }
 
 document.getElementById("reset").addEventListener("click", () => {
